@@ -1,6 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Customer\CustomerController;
+use App\Http\Controllers\Customer\Address\AddressController;
+use App\Http\Controllers\Customer\Wishlist\WishlistController;
+use App\Http\Controllers\Customer\Cart\CartController;
+use App\Http\Controllers\Customer\Order\OrderController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +19,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([], function ()
+{
+    Route::group([], function()
+    {
+        Route::apiResource( 'customers', CustomerController::class, [ 'parameters' => [ '' => 'customer' ]] );
+        Route::apiResource( 'customer.addresses', AddressController::class );
+        Route::apiResource( 'customer.wishlists', WishlistController::class );
+        Route::apiResource( 'customer.carts', CartController::class );
+        Route::apiResource( 'customer.orders', OrderController::class );
+    });
 });
