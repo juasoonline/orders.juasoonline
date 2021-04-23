@@ -8,6 +8,8 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -44,6 +46,14 @@ class Handler extends ExceptionHandler
     {
         if ( $exception instanceof ModelNotFoundException && $request -> wantsJson()) {
             return $this -> errorResponse( null, 'Error', 'Resource not found', Response::HTTP_NOT_FOUND );
+        }
+        elseif ( $exception instanceof MethodNotAllowedHttpException )
+        {
+            return $this -> errorResponse( null, 'Error', 'You do not have permission to perform this action', Response::HTTP_METHOD_NOT_ALLOWED );
+        }
+        elseif ( $exception instanceof NotFoundHttpException )
+        {
+            return $this -> errorResponse( null, 'Error', 'Endpoint do not exist', Response::HTTP_NOT_FOUND );
         }
 
         return parent::render( $request, $exception );

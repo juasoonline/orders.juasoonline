@@ -50,17 +50,17 @@ class CartController extends Controller
         return $this -> theRepository -> store( $customer, $cartRequest );
     }
 
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param Customer $customer
-//     * @param Cart $cart
-//     * @return JsonResponse
-//     */
-//    public function show( Customer $customer, Cart $cart ) : JsonResponse
-//    {
-//        return $this -> theRepository -> show( $customer, $cart );
-//    }
+    /**
+     * Display the specified resource.
+     *
+     * @param Customer $customer
+     * @param Cart $cart
+     * @return JsonResponse
+     */
+    public function show( Customer $customer, Cart $cart ) : JsonResponse
+    {
+        return $this -> theRepository -> show( $customer, $cart );
+    }
 
     /**
      * Update the specified resource in storage.
