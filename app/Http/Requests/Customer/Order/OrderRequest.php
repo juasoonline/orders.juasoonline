@@ -58,12 +58,12 @@ class OrderRequest extends FormRequest
     public function messages() : array
     {
         return
-            [
-                'data.required'                                             => "The data field is invalid",
+        [
+            'data.required'                                             => "The data field is invalid",
 
-                'data.type.required'                                        => "The type is required",
-                'data.type.string'                                          => "The type must be of a string",
-                'data.type.in'                                              => "The type is invalid",
-            ];
+            'data.type.required'                                        => "The type is required",
+            'data.type.string'                                          => "The type must be of a string",
+            'data.type.in'                                              => "The type is invalid",
+        ];
     }
 }

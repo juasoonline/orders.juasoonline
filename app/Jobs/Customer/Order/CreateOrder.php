@@ -10,7 +10,6 @@ use App\Traits\apiResponseBuilder;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -39,8 +38,6 @@ class CreateOrder implements ShouldQueue
      */
     public function handle() : OrderResource
     {
-        logger( $this->theRequest );
-
         try
         {
             $Order = new Order( $this -> theRequest -> input( 'data.attributes' ) );

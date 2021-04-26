@@ -55,7 +55,6 @@ class Handler extends ExceptionHandler
         {
             return $this -> errorResponse( null, 'Error', 'Endpoint do not exist', Response::HTTP_NOT_FOUND );
         }
-
         return parent::render( $request, $exception );
     }
 
