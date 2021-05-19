@@ -22,6 +22,10 @@ class CreateCustomersTable extends Migration
             $table -> string('middle_name' ) -> nullable();
             $table -> string('last_name' ) -> nullable( false );
 
+            $table -> string('gender' ) -> nullable();
+            $table -> date('date_of_birth' ) -> nullable();
+            $table -> string( 'image' ) -> nullable( true );
+
             $table -> string('email', 50 ) -> nullable( false ) -> unique();
             $table -> string('mobile_phone', 20 ) -> nullable( false ) -> unique();
 
