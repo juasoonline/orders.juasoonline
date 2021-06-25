@@ -11,6 +11,7 @@ class OrderObserver
      */
     public function creating( Order $order )
     {
-        $order -> resource_id = generateOrderID( 18 );
+        $order -> resource_id = uniqid();
+        $order -> order_id = generateOrderID( 18 );
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Customer\Wishlist\WishlistController;
 use App\Http\Controllers\Customer\Cart\CartController;
 use App\Http\Controllers\Customer\Order\OrderController;
 
+use App\Http\Controllers\Others\PaymentMethod\PaymentMethodController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([], function ()
 {
+    // Customers routes
     Route::group([], function()
     {
         Route::apiResource( 'customers', CustomerController::class, [ 'parameters' => [ '' => 'customer' ]] );
@@ -28,5 +30,11 @@ Route::group([], function ()
         Route::apiResource( 'customer.wishlists', WishlistController::class );
         Route::apiResource( 'customer.carts', CartController::class );
         Route::apiResource( 'customer.orders', OrderController::class );
+    });
+
+    // Juasoonline resources routes
+    Route::group(['prefix' => 'juaso'], function ()
+    {
+        Route::apiResource( 'payment-methods', PaymentMethodController::class );
     });
 });
