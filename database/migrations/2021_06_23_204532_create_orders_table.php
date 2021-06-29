@@ -28,6 +28,7 @@ class CreateOrdersTable extends Migration
             $table -> string( 'product_id' ) -> nullable( false );
             $table -> string( 'color_id' ) -> nullable( true );
             $table -> string( 'size_id' ) -> nullable( true );
+            $table -> string( 'bundle_id' ) -> nullable( true );
 
             $table -> integer( 'quantity' ) -> nullable( true );
 
