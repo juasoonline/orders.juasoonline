@@ -7,12 +7,14 @@ use App\Models\Customer\Cart\Cart;
 use App\Models\Customer\Customer;
 use App\Models\Customer\Order\Order;
 use App\Models\Customer\Wishlist\Wishlist;
+use App\Models\Others\DeliveryFee\DeliveryFee;
 use App\Models\Others\PaymentMethod\PaymentMethod;
 use App\Observers\Customer\Address\AddressObserver;
 use App\Observers\Customer\Cart\CartObserver;
 use App\Observers\Customer\CustomerObserver;
 use App\Observers\Customer\Order\OrderObserver;
 use App\Observers\Customer\Wishlist\WishlistObserver;
+use App\Observers\Others\DeliveryFee\DeliveryFeeObserver;
 use App\Observers\Others\PaymentMethod\PaymentMethodObserver;
 use Illuminate\Support\ServiceProvider;
 
@@ -44,5 +46,6 @@ class AppServiceProvider extends ServiceProvider
 
         // Other resource observers
         PaymentMethod::observe( PaymentMethodObserver::class );
+        DeliveryFee::observe( DeliveryFeeObserver::class );
     }
 }

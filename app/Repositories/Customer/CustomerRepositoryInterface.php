@@ -37,4 +37,10 @@ interface CustomerRepositoryInterface
      * @return JsonResponse
      */
     public function destroy( Customer $customer ): JsonResponse;
+
+    /**
+     * @param Customer $customer
+     * @return JsonResponse
+     */
+    public function getStats( Customer $customer ) : JsonResponse;
 }

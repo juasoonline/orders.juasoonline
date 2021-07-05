@@ -76,4 +76,13 @@ class CustomerController extends Controller
     {
         return $this -> theRepository -> destroy( $customer );
     }
+
+    /**
+     * @param Customer $customer
+     * @return JsonResponse
+     */
+    public function getStats( Customer $customer ) : JsonResponse
+    {
+        return $this -> theRepository -> getStats( $customer );
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Repositories\Customer;
 
 use App\Http\Requests\Customer\CustomerRequest;
 use App\Http\Resources\Customer\CustomerResource;
+use App\Http\Resources\Customer\Stat\StatResource;
 use App\Jobs\Customer\CreateCustomer;
 use App\Jobs\Customer\UpdateCustomer;
 use App\Models\Customer\Customer;
@@ -64,5 +65,14 @@ class CustomerRepository implements CustomerRepositoryInterface
     {
         $customer -> delete();
         return $this -> successResponse( null, 'Success', 'Customer deleted', Response::HTTP_NO_CONTENT );
+    }
+
+    /**
+     * @param Customer $customer
+     * @return JsonResponse
+     */
+    public function getStats( Customer $customer ) : JsonResponse
+    {
+        return $this -> successResponse( new StatResource( $customer ), "Success", null, Response::HTTP_OK );
     }
 }

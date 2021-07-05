@@ -12,6 +12,8 @@ use App\Repositories\Customer\Order\OrderRepository;
 use App\Repositories\Customer\Order\OrderRepositoryInterface;
 use App\Repositories\Customer\Wishlist\WishlistRepository;
 use App\Repositories\Customer\Wishlist\WishlistRepositoryInterface;
+use App\Repositories\Others\DeliveryFee\DeliveryFeeRepository;
+use App\Repositories\Others\DeliveryFee\DeliveryFeeRepositoryInterface;
 use App\Repositories\Others\PaymentMethod\PaymentMethodRepository;
 use App\Repositories\Others\PaymentMethod\PaymentMethodRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -34,6 +36,7 @@ class RepositoryServiceProvider extends ServiceProvider
 
         // Other resource repository
         $this -> app -> bind( PaymentMethodRepositoryInterface::class, PaymentMethodRepository::class );
+        $this -> app -> bind( DeliveryFeeRepositoryInterface::class, DeliveryFeeRepository::class );
     }
 
     /**

@@ -34,7 +34,7 @@ class WishlistRepository implements WishlistRepositoryInterface
      */
     public function store( Customer $customer, WishlistRequest $wishlistRequest ) : JsonResponse
     {
-        return $this -> successResponse( ( new CreateWishlist( $customer, $wishlistRequest ) ) -> handle(), "Success", "Product(s) added to wishlist", Response::HTTP_CREATED );
+        return $this -> successResponse( ( new CreateWishlist( $customer, $wishlistRequest ) ) -> handle(), "Success", "Item added to wishlist", Response::HTTP_CREATED );
     }
 
     /**
@@ -58,7 +58,7 @@ class WishlistRepository implements WishlistRepositoryInterface
     public function update( Customer $customer, WishlistRequest $wishlistRequest, Wishlist $wishlist ) : JsonResponse
     {
         checkResourceRelation( $customer -> wishlists() -> where( 'wishlists.id', $wishlist -> id ) -> count());
-        return $this -> successResponse( ( new UpdateWishlist( $wishlistRequest, $wishlist ) ) -> handle(), 'Success', 'Wishlist item(s) updated', Response::HTTP_OK );
+        return $this -> successResponse( ( new UpdateWishlist( $wishlistRequest, $wishlist ) ) -> handle(), 'Success', 'Wishlist item updated', Response::HTTP_OK );
     }
 
     /**
@@ -70,6 +70,6 @@ class WishlistRepository implements WishlistRepositoryInterface
     {
         checkResourceRelation( $customer -> wishlists() -> where( 'wishlists.id', $wishlist -> id ) -> count());
         $wishlist -> delete();
-        return $this -> successResponse( null, 'Success', 'Wishlist item(s) deleted', Response::HTTP_NO_CONTENT );
+        return $this -> successResponse( null, 'Success', 'Wishlist item deleted', Response::HTTP_NO_CONTENT );
     }
 }

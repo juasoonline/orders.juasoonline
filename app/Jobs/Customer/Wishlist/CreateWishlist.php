@@ -9,8 +9,10 @@ use App\Models\Customer\Wishlist\Wishlist;
 use App\Traits\apiResponseBuilder;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -35,19 +37,18 @@ class CreateWishlist implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @return AnonymousResourceCollection|mixed
+     * @return WishlistResource|mixed
      */
-    public function handle() : AnonymousResourceCollection
+    public function handle() : WishlistResource
     {
         try
         {
-            foreach ( $this -> theRequest [ 'data.wishlists.data' ] as $wishlist )
-            {
-                $wishlist = new Wishlist( $wishlist );
-                $wishlist -> customer() -> associate( $this -> theRequest [ 'data.relationships.customer.customer_id' ] );
-                $wishlist -> save();
-            }
-            return WishlistResource::collection( $this -> theCustomer -> wishlists() -> paginate() );
+            $Wishlist = new Wishlist( $this -> theRequest -> input( 'data.attributes' ) );
+            $Wishlist -> customer() -> associate( $this -> theRequest [ 'data.relationships.customer.customer_id' ] );
+            $Wishlist -> save();
+
+            $Wishlist -> refresh();
+            return ( new WishlistResource( $Wishlist ) );
         }
         catch ( Exception $exception )
         {

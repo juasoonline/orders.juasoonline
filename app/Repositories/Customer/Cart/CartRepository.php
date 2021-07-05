@@ -33,7 +33,7 @@ class CartRepository implements CartRepositoryInterface
      */
     public function store( Customer $customer, CartRequest $cartRequest ) : JsonResponse
     {
-        return $this -> successResponse( ( new CreateCart( $customer, $cartRequest ) ) -> handle(), "Success", "Product(s) added to cart", Response::HTTP_CREATED );
+        return $this -> successResponse( ( new CreateCart( $customer, $cartRequest ) ) -> handle(), "Success", "Item added to cart", Response::HTTP_CREATED );
     }
 
     /**
@@ -57,7 +57,7 @@ class CartRepository implements CartRepositoryInterface
     public function update( Customer $customer, CartRequest $cartRequest, Cart $cart ) : JsonResponse
     {
         checkResourceRelation( $customer -> carts() -> where( 'carts.id', $cart -> id ) -> count());
-        return $this -> successResponse( ( new UpdateCart( $cartRequest, $cart ) ) -> handle(), 'Success', 'Cart item(s) updated', Response::HTTP_OK );
+        return $this -> successResponse( ( new UpdateCart( $cartRequest, $cart ) ) -> handle(), 'Success', 'Cart item updated', Response::HTTP_OK );
     }
 
     /**
@@ -69,6 +69,6 @@ class CartRepository implements CartRepositoryInterface
     {
         checkResourceRelation( $customer -> carts() -> where( 'carts.id', $cart -> id ) -> count());
         $cart -> delete();
-        return $this -> successResponse( null, 'Success', 'Cart item(s) deleted', Response::HTTP_NO_CONTENT );
+        return $this -> successResponse( null, 'Success', 'Cart item deleted', Response::HTTP_NO_CONTENT );
     }
 }

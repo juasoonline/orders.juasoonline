@@ -3,6 +3,7 @@
 namespace App\Models\Customer\Order;
 
 use App\Models\Customer\Customer;
+use App\Models\Others\DeliveryFee\DeliveryFee;
 use App\Models\Others\PaymentMethod\PaymentMethod;
 use App\Models\Shipper\Transport;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -43,5 +44,13 @@ class Order extends Model
     public function transport() : BelongsTo
     {
         return $this -> belongsTo( Transport::class );
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function deliveryFee() : HasOne
+    {
+        return $this -> hasOne( DeliveryFee::class );
     }
 }

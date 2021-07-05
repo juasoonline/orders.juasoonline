@@ -22,20 +22,20 @@ interface WishlistRepositoryInterface
      */
     public function store( Customer $customer, WishlistRequest $wishlistRequest ) : JsonResponse;
 
-//    /**
-//     * @param Customer $customer
-//     * @param Wishlist $wishlist
-//     * @return JsonResponse
-//     */
-//    public function show( Customer $customer, Wishlist $wishlist ) : JsonResponse;
+    /**
+     * @param Customer $customer
+     * @param Wishlist $wishlist
+     * @return JsonResponse
+     */
+    public function show( Customer $customer, Wishlist $wishlist ) : JsonResponse;
 
-//    /**
-//     * @param Customer $customer
-//     * @param WishlistRequest $wishlistRequest
-//     * @param Wishlist $wishlist
-//     * @return JsonResponse
-//     */
-//    public function update( Customer $customer, WishlistRequest $wishlistRequest, Wishlist $wishlist ) : JsonResponse;
+    /**
+     * @param Customer $customer
+     * @param WishlistRequest $wishlistRequest
+     * @param Wishlist $wishlist
+     * @return JsonResponse
+     */
+    public function update( Customer $customer, WishlistRequest $wishlistRequest, Wishlist $wishlist ) : JsonResponse;
 
     /**
      * @param Customer $customer

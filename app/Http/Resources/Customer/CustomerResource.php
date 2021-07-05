@@ -24,26 +24,26 @@ class CustomerResource extends JsonResource
     {
         return
         [
-            'id'                    => $this -> id,
+            'id'                    => $this -> resource -> id,
             'type'                  => 'Customer',
 
             'attributes' =>
             [
-                'resource_id'       => $this -> resource_id,
+                'resource_id'       => $this -> resource -> resource_id,
 
-                'first_name'        => $this -> first_name,
-                'middle_name'       => $this -> middle_name,
-                'last_name'         => $this -> last_name,
+                'first_name'        => $this -> resource -> first_name,
+                'middle_name'       => $this -> resource -> middle_name,
+                'last_name'         => $this -> resource -> last_name,
 
-                'gender'            => $this -> gender,
-                'date_of_birth'     => $this -> date_of_birth,
-                'image'             => $this -> image,
+                'gender'            => $this -> resource -> gender,
+                'date_of_birth'     => $this -> resource -> date_of_birth,
+                'image'             => $this -> resource -> image,
 
-                'email'             => $this -> email,
-                'mobile_phone'      => $this -> mobile_phone,
+                'email'             => $this -> resource -> email,
+                'mobile_phone'      => $this -> resource -> mobile_phone,
 
-                'created_at'        => $this -> created_at -> toDateTimeString(),
-                'updated_at'        => $this -> updated_at -> toDateTimeString(),
+                'created_at'        => $this -> resource -> created_at -> toDateTimeString(),
+                'updated_at'        => $this -> resource -> updated_at -> toDateTimeString(),
             ],
 
             'include'               => $this -> when( $this -> relationLoaded( 'addresses' ) || $this -> relationLoaded( 'wishlists' ) || $this -> relationLoaded( 'carts' ) || $this -> relationLoaded( 'orders' ),

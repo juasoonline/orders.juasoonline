@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Resources\Others\PaymentMethod;
+namespace App\Http\Resources\Others\DeliveryFee;
 
 use App\Http\Resources\Customer\Order\OrderResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PaymentMethodResource extends JsonResource
+/**
+ * @method relationLoaded(string $string)
+ */
+class DeliveryFeeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,16 +22,16 @@ class PaymentMethodResource extends JsonResource
         return
         [
             'id'                    => $this -> resource -> id,
-            'type'                  => 'PaymentMethods',
+            'type'                  => 'DeliveryFee',
 
             'attributes' =>
             [
                 'resource_id'       => $this -> resource -> resource_id,
 
-                'name'              => $this -> resource -> name,
-                'code'              => $this -> resource -> code,
+                'delivery_time'     => $this -> resource -> delivery_time,
+                'fee'               => $this -> resource -> fee,
+                'carrier'           => $this -> resource -> carrier,
                 'description'       => $this -> resource -> description,
-                'logo'              => $this -> resource -> logo,
 
                 'created_at'        => $this -> resource -> created_at -> toDateTimeString(),
                 'updated_at'        => $this -> resource -> updated_at -> toDateTimeString(),
