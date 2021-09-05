@@ -22,7 +22,6 @@ class CountriesTableSeeder extends Seeder
             'iso_code' => 'GH',
             'number_code' => 'ISO 3166-2:GH',
         ]);
-
         DB::table( 'countries' ) -> insert([
             "resource_id"       =>  hexdec( uniqid() ),
             'name' => 'Nigeria',
@@ -31,7 +30,6 @@ class CountriesTableSeeder extends Seeder
             'iso_code' => 'NG',
             'number_code' => '588',
         ]);
-
         DB::table( 'countries' ) -> insert([
             "resource_id"       =>  hexdec( uniqid() ),
             'name' => 'Kenya',

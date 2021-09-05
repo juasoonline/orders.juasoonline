@@ -16,7 +16,7 @@ function includeResources() : array
  * @param int $length
  * @return string
  */
-function generateProductID( int $length ) : string
+function generateOrderID( int $length ) : string
 {
     $number = '';
     do {
@@ -25,7 +25,7 @@ function generateProductID( int $length ) : string
             $number .= mt_rand(0,9);
         }
     }
-    while ( !empty( DB::table( 'products' ) -> where( 'resource_id', $number ) -> first([ 'resource_id' ])) );
+    while ( !empty( DB::table( 'orders' ) -> where( 'resource_id', $number ) -> first([ 'resource_id' ])) );
 
     return $number;
 }
