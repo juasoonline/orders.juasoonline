@@ -1,46 +1,94 @@
 <?php
 
-use App\Http\Controllers\Customer\CustomerController;
-use App\Http\Controllers\Customer\Address\AddressController;
-use App\Http\Controllers\Customer\Wishlist\WishlistController;
-use App\Http\Controllers\Customer\Cart\CartController;
-use App\Http\Controllers\Customer\Order\OrderController;
+use App\Http\Controllers\Juaso\Resource\Country\CountryController;
+use App\Http\Controllers\Juaso\Resource\PaymentMethod\PaymentMethodController;
+use App\Http\Controllers\Juaso\Resource\DeliveryMethod\DeliveryMethodController;
+use App\Http\Controllers\Juaso\Resource\Shipper\Shipper\ShipperController;
+use App\Http\Controllers\Juaso\Resource\Shipper\Agent\AgentController;
+use App\Http\Controllers\Juaso\Resource\Shipper\Transport\TransportController;
 
-use App\Http\Controllers\Others\DeliveryFee\DeliveryFeeController;
-use App\Http\Controllers\Others\PaymentMethod\PaymentMethodController;
+use App\Http\Controllers\Juasoonline\Resource\Customer\Order\OrderController;
+
+use App\Http\Controllers\Juasoonline\Juaso\DeliveryMethod\JuasoonlineDeliveryMethodController;
+use App\Http\Controllers\Juasoonline\Juaso\PaymentMethod\JuasoonlinePaymentMethodController;
+
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::group([], function ()
+Route::group(['prefix' => 'api/v1'], function ()
 {
-    // Customers routes
-    Route::group([], function()
+    // Business resource routes
+    Route::group(['prefix' => 'juaso'], function ()
     {
-        // Customer main resource
-        Route::apiResource( 'customers', CustomerController::class, [ 'parameters' => [ '' => 'customer' ]] );
-        Route::apiResource( 'customer.addresses', AddressController::class );
-        Route::apiResource( 'customer.wishlists', WishlistController::class );
-        Route::apiResource( 'customer.carts', CartController::class );
-        Route::apiResource( 'customer.orders', OrderController::class );
+        // juaso and related routes
+        Route::group(['prefix' => 'resources'], function ()
+        {
+            Route::apiResource('countries', CountryController::class );
+            Route::apiResource('payment-methods', PaymentMethodController::class );
+            Route::apiResource('delivery-methods', DeliveryMethodController::class );
 
-        // Other resource
-        Route::get( 'customers/{customer}/stats', [ CustomerController::class, 'getStats' ] );
+            // Shippers and related resource
+            Route::apiResource('shippers', ShipperController::class );
+            Route::apiResource('shippers.agents', AgentController::class );
+            Route::apiResource('shippers.transports', TransportController::class );
+        });
+
+        // Business and related routes
+        Route::group(['prefix' => 'business'], function()
+        {
+
+        });
+
+        // juasoonline and related routes
+        Route::group(['prefix' => 'juasoonline'], function()
+        {
+
+        });
     });
-});
 
-// Juasoonline resources routes
-Route::group(['prefix' => 'juasoonline'], function ()
-{
-    Route::apiResource( 'payment-methods', PaymentMethodController::class ) -> only( 'index', 'show' );
-    Route::apiResource( 'delivery-fee', DeliveryFeeController::class ) -> only( 'index', 'show' );
+    // Business resource routes
+    Route::group(['prefix' => 'business'], function ()
+    {
+        // juaso and related routes
+        Route::group(['prefix' => 'resources'], function ()
+        {
+
+        });
+
+        // Business and related routes
+        Route::group(['prefix' => 'business'], function()
+        {
+
+        });
+
+        // juasoonline and related routes
+        Route::group(['prefix' => 'juasoonline'], function()
+        {
+
+        });
+    });
+
+    // Juasoonline resource routes
+    Route::group(['prefix' => 'juasoonline'], function ()
+    {
+        // Customer and related routes
+        Route::group(['prefix' => 'customers'], function ()
+        {
+            Route::get( '{customer}/orders', [ OrderController::class, 'index' ]);
+            Route::post( 'orders', [ OrderController::class, 'store' ]);
+            Route::get( '{customer}/orders/{order}', [ OrderController::class, 'show' ]);
+        });
+
+        // Business and related routes
+        Route::group(['prefix' => 'business'], function()
+        {
+
+        });
+
+        // juaso and related routes
+        Route::group(['prefix' => 'juaso/resources'], function()
+        {
+            Route::apiResource( 'delivery-methods', JuasoonlineDeliveryMethodController::class ) -> only( 'index', 'show' );
+            Route::apiResource( 'payment-methods', JuasoonlinePaymentMethodController::class ) -> only( 'index', 'show' );
+        });
+    });
 });

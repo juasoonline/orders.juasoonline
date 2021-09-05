@@ -14,7 +14,7 @@ class DeliveryFeeTableSeeder extends Seeder
      */
     public function run()
     {
-//        DB::table( 'delivery_fees' ) -> insert(
+//        DB::table( 'delivery_methods' ) -> insert(
 //        [
 //            "resource_id"                   => "548752300984",
 //
@@ -25,7 +25,7 @@ class DeliveryFeeTableSeeder extends Seeder
 //            "created_at"                    => date("Y-m-d H:i:s"),
 //            "updated_at"                    => date("Y-m-d H:i:s"),
 //        ]);
-        DB::table( 'delivery_fees' ) -> insert(
+        DB::table( 'delivery_methods' ) -> insert(
         [
             "resource_id"                   => "548752323484",
 
@@ -37,7 +37,7 @@ class DeliveryFeeTableSeeder extends Seeder
             "created_at"                    => date("Y-m-d H:i:s"),
             "updated_at"                    => date("Y-m-d H:i:s"),
         ]);
-        DB::table( 'delivery_fees' ) -> insert(
+        DB::table( 'delivery_methods' ) -> insert(
         [
             "resource_id"                   => "548752311909",
 
@@ -49,7 +49,7 @@ class DeliveryFeeTableSeeder extends Seeder
             "created_at"                    => date("Y-m-d H:i:s"),
             "updated_at"                    => date("Y-m-d H:i:s"),
         ]);
-        DB::table( 'delivery_fees' ) -> insert(
+        DB::table( 'delivery_methods' ) -> insert(
         [
             "resource_id"                   => "548752301984",
 

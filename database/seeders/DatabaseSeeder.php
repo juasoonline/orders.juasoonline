@@ -16,8 +16,6 @@ class DatabaseSeeder extends Seeder
         $this -> call([ CountriesTableSeeder::class ]);
         $this -> call([ ShipperTableSeeder::class ]);
         $this -> call([ TransportTableSeeder::class ]);
-        $this -> call([ CustomerTableSeeder::class ]);
-        $this -> call([ AddressTableSeeder::class ]);
         $this -> call([ PaymentMethodTableSeeder::class ]);
         $this -> call([ DeliveryFeeTableSeeder::class ]);
     }

@@ -19,6 +19,7 @@ class CreateTransportsTable extends Migration
             $table -> uuid( 'resource_id' ) -> unique() -> nullable( false );
 
             $table -> unsignedBigInteger( 'shipper_id' ) -> nullable( false );
+            $table -> unsignedBigInteger( 'agent_id' ) -> nullable( true );
 
             $table -> string( 'name' ) -> nullable( false ) -> unique();
             $table -> string( 'registration_number' ) -> nullable( false ) -> unique();
@@ -27,6 +28,7 @@ class CreateTransportsTable extends Migration
             $table -> softDeletes();
 
             $table -> foreign('shipper_id' ) -> references('id' ) -> on( 'shippers' ) -> onDelete( 'cascade' );
+            $table -> foreign('agent_id' ) -> references('id' ) -> on( 'agents' ) -> onDelete( 'cascade' );
         });
     }
 
